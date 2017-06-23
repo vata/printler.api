@@ -1,0 +1,128 @@
+[
+    {
+        "id": 12,
+        "product_type": "spring_binded",
+        "term": 3,
+        "margin": 0,
+        "module": 97
+    },
+    {
+        "id": 13,
+        "product_type": "spring_binded",
+        "term": 2,
+        "margin": 10,
+        "module": 97
+    },
+    {
+        "id": 16,
+        "product_type": "brace_binded",
+        "term": 2,
+        "margin": 10,
+        "module": 97
+    },
+    {
+        "id": 18,
+        "product_type": "kubarik",
+        "term": 3,
+        "margin": 0,
+        "module": 97
+    },
+    {
+        "id": 19,
+        "product_type": "kubarik",
+        "term": 2,
+        "margin": 10,
+        "module": 97
+    },
+    {
+        "id": 22,
+        "product_type": "folded",
+        "term": 2,
+        "margin": 10,
+        "module": 97
+    },
+    {
+        "id": 25,
+        "product_type": "singlepage",
+        "term": 2,
+        "margin": 10,
+        "module": 97
+    },
+    {
+        "id": 27,
+        "product_type": "hotmelt",
+        "term": 3,
+        "margin": 0,
+        "module": 97
+    },
+    {
+        "id": 24,
+        "product_type": "singlepage",
+        "term": 3,
+        "margin": 0,
+        "module": 97
+    },
+    {
+        "id": 15,
+        "product_type": "brace_binded",
+        "term": 3,
+        "margin": 0,
+        "module": 97
+    },
+    {
+        "id": 21,
+        "product_type": "folded",
+        "term": 3,
+        "margin": 0,
+        "module": 97
+    },
+    {
+        "id": 28,
+        "product_type": "hotmelt",
+        "term": 2,
+        "margin": 10,
+        "module": 97
+    },
+    {
+        "id": 14,
+        "product_type": "spring_binded",
+        "term": 1,
+        "margin": 15,
+        "module": 97
+    },
+    {
+        "id": 17,
+        "product_type": "brace_binded",
+        "term": 1,
+        "margin": 15,
+        "module": 97
+    },
+    {
+        "id": 23,
+        "product_type": "folded",
+        "term": 1,
+        "margin": 15,
+        "module": 97
+    },
+    {
+        "id": 20,
+        "product_type": "kubarik",
+        "term": 1,
+        "margin": 15,
+        "module": 97
+    },
+    {
+        "id": 26,
+        "product_type": "singlepage",
+        "term": 1,
+        "margin": 15,
+        "module": 97
+    },
+    {
+        "id": 813,
+        "product_type": "hotmelt",
+        "term": 1,
+        "margin": 15,
+        "module": 97
+    }
+]

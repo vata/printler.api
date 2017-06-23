@@ -1,0 +1,18 @@
+{
+    "screen": 1,
+    "offset": 3,
+    "wide_printing": 2,
+    "roll_lamination": 0,
+    "selection": 2,
+    "cutting": 1,
+    "batch_lamination": 1,
+    "creasing": 1,
+    "folding": 0,
+    "hotmelt_binding": 1,
+    "stamping": 1,
+    "perforation": 1,
+    "uf_varnishing": 1,
+    "digital": 3,
+    "brace_binding": 2,
+    "shape_cutting": 1
+}

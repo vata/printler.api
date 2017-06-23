@@ -1,0 +1,274 @@
+{
+    "params.[sec].print": {
+        "1": {
+            "params.[sec].back.chromOption": [
+                "no",
+                {
+                    "M": "",
+                    "K": "",
+                    "Y": "",
+                    "C": ""
+                }
+            ],
+            "params.[sec].back.varnishingType": "no",
+            "params.[sec].back.laminationType": "no"
+        },
+        "2": {
+            "params.[sec].back.chromOption": "$default",
+            "params.[sec].back.varnishingType": "$default",
+            "params.[sec].back.laminationType": "$default"
+        }
+    },
+    "params.[sec].[side].laminationType": {
+        "matted": {
+            "params.[sec].[side].varnishingSurface": {
+                "$if": "params.[sec].[side].varnishingType == \"ufp\" && params.[sec].[side].varnishingSurface != \"no\"",
+                "set": "glossy"
+            },
+            "params.[sec].[side].laminationThickness": {
+                "$if": "$parse:printeryData.matted_laminate_microns.length > 0",
+                "set": "$parse:printeryData.matted_laminate_microns[0]"
+            }
+        },
+        "glossy": {
+            "params.[sec].[side].varnishingSurface": {
+                "$if": "params.[sec].[side].varnishingType == \"ufp\" && params.[sec].[side].varnishingSurface != \"no\"",
+                "set": "matted"
+            },
+            "params.[sec].[side].laminationThickness": {
+                "$if": "$parse:printeryData.glossy_laminate_microns.length > 0",
+                "set": "$parse:printeryData.glossy_laminate_microns[0]"
+            }
+        },
+        "no": {
+            "params.[sec].[side].laminationThickness": "no"
+        },
+        "$not:\"no\"": {
+            "params.[sec].[side].varnishingType": {
+                "$if": "params.[sec].[side].varnishingType != \"ufp\"",
+                "set": "no"
+            },
+            "params.[sec].[otherside].laminationType": {
+                "$if": "params.[sec].[otherside].laminationType != \"no\"",
+                "set": "$val"
+            }
+        }
+    },
+    "params.[sec].[side].hotstampingFoilColor": {
+        "$default": {
+            "options.[sec].[side].hotstampingFoilSurface": "$parse:printeryData.foils[$val]"
+        },
+        "no": {
+            "options.[sec].[side].hotstampingFoilSurface": "$default"
+        }
+    },
+    "params.springMaterial": {
+        "$any": {
+            "params.springColor": {
+                "$then": "options.springColorOptions[$val][0]",
+                "$if": "options.springColorOptions[$val].indexOf(params.springColor) == -1"
+            }
+        }
+    },
+    "params.[sec].printingType": {
+        "screen": {
+            "options.[sec].[side].laminationType": "$default",
+            "options.[sec].[side].varnishingType": "$default | filter:\"!vd\" | filter:\"!of\""
+        },
+        "$default": {
+            "options.[sec].[side].laminationType": "$default",
+            "options.[sec].[side].varnishingType": "$default"
+        },
+        "digital": {
+            "options.[sec].[side].laminationType": {
+                "$if": "!printeryData.lamination_after_digital",
+                "set": [
+                    "no"
+                ]
+            },
+            "options.[sec].[side].varnishingType": "$default | filter:\"!vd\" | filter:\"!of\""
+        }
+    },
+    "params.formatWidth": {
+        "$exec": "updateOrientation('format')"
+    },
+    "params.orientation": {
+        "$exec": "updateOrientation('orientation')"
+    },
+    "params.[sec].printBackAllowed": {
+        "false": {
+            "options.[sec].back.varnishingType": [
+                "no"
+            ],
+            "options.[sec].back.chromOption": [
+                [
+                    "no",
+                    {
+                        "M": "",
+                        "K": "",
+                        "Y": "",
+                        "C": ""
+                    }
+                ]
+            ],
+            "options.[sec].back.laminationType": [
+                "no"
+            ],
+            "options.[sec].print": [
+                1
+            ]
+        },
+        "true": {
+            "options.[sec].back.varnishingType": "$default",
+            "options.[sec].back.chromOption": "$default",
+            "options.[sec].back.laminationType": "$default",
+            "options.[sec].print": "$default"
+        }
+    },
+    "params.[sec].[side].varnishingSurface": {
+        "matted": {
+            "params.[sec].[side].laminationType": {
+                "$if": "params.[sec].[side].varnishingType == \"ufp\" && params.[sec].[side].laminationType != \"no\"",
+                "set": "glossy"
+            }
+        },
+        "glossy": {
+            "params.[sec].[side].laminationType": {
+                "$if": "params.[sec].[side].varnishingType == \"ufp\" && params.[sec].[side].laminationType != \"no\"",
+                "set": "matted"
+            }
+        },
+        "$any": {
+            "params.[sec].[otherside].varnishingSurface": {
+                "$if": "([\"no\", \"uff\", \"ufp\"].indexOf(params.[sec].[otherside].varnishingType) == -1 &&                        [\"no\", \"uff\", \"ufp\"].indexOf(params.[sec].[side].varnishingType) == -1) ||                        (params.[sec].[side].varnishingType.indexOf(\"uf\") == 0 && params.[sec].[otherside].varnishingType.indexOf(\"uf\") == 0)",
+                "set": "$val"
+            }
+        }
+    },
+    "params.[sec].[side].chromOption[0]": {
+        "$notIn:[\"0\"]": {
+            "params.[sec].[side].chromaticity": "$parse:params.[sec].[side].chromOption[1]"
+        }
+    },
+    "params.[sec].glueType": {
+        "$exec": "getDensities('[sec]')"
+    },
+    "params.[sec].density": {
+        "$gte:printeryData.vd_min_density;$gte:printeryData.uf_min_density": {
+            "options.[sec].[side].varnishingType": {
+                "$if": "params.[sec].material == 'paper'",
+                "set": "$default"
+            }
+        },
+        "$lt:printeryData.lamination_min_density": {
+            "options.[sec].[side].laminationType": {
+                "$if": "params.[sec].material == 'paper'",
+                "set": [
+                    "no"
+                ]
+            }
+        },
+        "$gte:printeryData.uf_min_density;$lt:printeryData.vd_min_density": {
+            "options.[sec].[side].varnishingType": {
+                "$if": "params.[sec].material == 'paper'",
+                "set": "$default | filter:\"!vd\""
+            }
+        },
+        "$gte:printeryData.lamination_min_density": {
+            "options.[sec].[side].laminationType": {
+                "$if": "params.[sec].material == 'paper'",
+                "set": "$default"
+            }
+        },
+        "$lt:printeryData.uf_min_density;$lt:printeryData.vd_min_density": {
+            "options.[sec].[side].varnishingType": {
+                "$if": "params.[sec].material == 'paper'",
+                "set": "$default | filter:oneOf(\"of,no\")"
+            }
+        },
+        "$gte:printeryData.vd_min_density;$lt:printeryData.uf_min_density": {
+            "options.[sec].[side].varnishingType": {
+                "$if": "params.[sec].material == 'paper'",
+                "set": "$default | filter:\"!uf\""
+            }
+        }
+    },
+    "params.[sec].[side].chromaticity": {
+        "$exec": "updateSingleChrom('[sec]', '[side]')"
+    },
+    "params.[sec].surface": {
+        "$exec": "getDensities('[sec]')",
+        "$any": {
+            "options.[sec].glueType": "$parse:intersection($default, printeryData.self_adhesive_glue_types[$val])"
+        }
+    },
+    "params.[sec].[side].hotstampingType": {
+        "$default": {
+            "options.[sec].[side].hotstampingFoilColor": "$default"
+        },
+        "$in:[\"foil_stamping\", \"foil_relief_stamping\"]": {
+            "options.[sec].[side].hotstampingFoilColor": "$parse:keys(printeryData.foils)"
+        }
+    },
+    "keys(printeryData.foils).length": {
+        "$:0": {
+            "options.[sec].[side].hotstampingType": [
+                "no",
+                "stamping",
+                "relief_stamping"
+            ]
+        },
+        "$gt:0": {
+            "options.[sec].[side].hotstampingType": "$default"
+        }
+    },
+    "params.formatHeight": {
+        "$exec": "updateOrientation('format')"
+    },
+    "params.[sec].material": {
+        "$in:[\"carton_2\", \"paper\", \"offset\"]": {
+            "params.[sec].print": "$default",
+            "params.[sec].printBackAllowed": "$default"
+        },
+        "$not:\"offset\"": {
+            "options.[sec].surface": "$parse:materialSurfaces[$val]",
+            "options.[sec].[side].laminationType": "$default",
+            "options.[sec].[side].varnishingType": "$default"
+        },
+        "carton_1": {
+            "params.[sec].printBackAllowed": false
+        },
+        "offset": {
+            "options.[sec].surface": [
+                "no"
+            ],
+            "options.[sec].[side].laminationType": [
+                "no"
+            ],
+            "options.[sec].[side].varnishingType": [
+                "no"
+            ]
+        },
+        "$exec": "getDensities('[sec]')"
+    },
+    "params.[sec].[side].varnishingType": {
+        "$default": {
+            "params.[sec].[side].laminationType": "no",
+            "options.[sec].[side].varnishingSurface": "$default",
+            "params.[sec].[otherside].varnishingType": {
+                "$if": "!contains([\"no\", \"uff\", \"ufp\"], params.[sec].[otherside].varnishingType)",
+                "set": "$val"
+            }
+        },
+        "no": {
+            "options.[sec].[side].varnishingSurface": []
+        },
+        "ufp": {
+            "params.[sec].[side].laminationType": {
+                "$if": "params.[sec].[side].laminationType == params.[sec].[side].varnishingSurface &&                        params.[sec].[side].laminationType != \"no\"",
+                "set": "$parse: params.[sec].[side].laminationType == \"glossy\" ? \"matted\" : \"glossy\""
+            },
+            "options.[sec].[side].varnishingSurface": "$default"
+        }
+    }
+}

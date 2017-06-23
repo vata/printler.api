@@ -1,0 +1,92 @@
+{
+    "blade_cost": true,
+    "roll_laminate_matted": true,
+    "uf_machine_any": true,
+    "uf_machine_stencil": true,
+    "varnish_of_matted": false,
+    "varnish_of_glossy": false,
+    "uf_machine_roller": false,
+    "printing_offset": true,
+    "roll_laminate_glossy": true,
+    "hand_brace_binding": true,
+    "batch_laminate_matted": true,
+    "vd_min_density": 0,
+    "sheet_counting": true,
+    "batch_laminate_microns": {
+        "glossy": [
+            25
+        ],
+        "matted": [
+            32
+        ]
+    },
+    "self_adhesive_glue_types": {
+        "glossy": [
+            "permanent"
+        ],
+        "matted": []
+    },
+    "glossy_laminate_microns": [
+        25,
+        125
+    ],
+    "spring_colors": {
+        "metal": [
+            "white"
+        ],
+        "plastic": [
+            "white"
+        ]
+    },
+    "perforator_any": true,
+    "laminator_batch": true,
+    "matted_laminate_microns": [
+        32,
+        75
+    ],
+    "laminator_any": true,
+    "spring_binding": true,
+    "lamination_min_density": null,
+    "laminator_roll": false,
+    "foils": {
+        "silver": [
+            "matted"
+        ],
+        "gold": [
+            "glossy"
+        ]
+    },
+    "uf_min_density": 115,
+    "spring_metal": true,
+    "folding_machine_or_hand_folding": true,
+    "varnish_vd_matted": true,
+    "printing_any": true,
+    "laminate_matted_roll_or_batch": true,
+    "lamination_after_vd": false,
+    "shapecutter": true,
+    "hotstampingpress_any": true,
+    "roll_laminate_microns": {
+        "glossy": [
+            25,
+            125
+        ],
+        "matted": [
+            75,
+            32
+        ]
+    },
+    "cutter": true,
+    "is_screen_printing_available": true,
+    "batch_laminate_glossy": true,
+    "lamination_after_digital": true,
+    "pva_binding": true,
+    "printing_digital": true,
+    "printing_offset_vd": true,
+    "hotmelt_machine_any": true,
+    "varnish_uf": true,
+    "varnish_vd_glossy": true,
+    "spring_plastic": true,
+    "pickup_machine_or_hand_selection": true,
+    "laminate_glossy_roll_or_batch": true,
+    "pickup_machine_file_bracket": true
+}

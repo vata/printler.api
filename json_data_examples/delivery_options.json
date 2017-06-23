@@ -1,0 +1,42 @@
+[
+    {
+        "id": 6,
+        "delivery_type": "delivery",
+        "time": 1,
+        "cost": 800,
+        "to": "Москва",
+        "module": 97
+    },
+    {
+        "id": 7,
+        "delivery_type": "delivery",
+        "time": 1,
+        "cost": 500,
+        "to": "В пределах КАД",
+        "module": 97
+    },
+    {
+        "id": 8,
+        "delivery_type": "take_away",
+        "time": 1,
+        "cost": 100,
+        "to": "Санкт-Петербург, Россия",
+        "module": 97
+    },
+    {
+        "id": 9,
+        "delivery_type": "take_away",
+        "time": 1,
+        "cost": 200,
+        "to": "Москва,  равяной вал 17",
+        "module": 97
+    },
+    {
+        "id": 584,
+        "delivery_type": "take_away",
+        "time": 3,
+        "cost": 0,
+        "to": "",
+        "module": 97
+    }
+]
